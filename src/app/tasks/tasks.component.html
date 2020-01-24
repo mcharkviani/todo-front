@@ -1,0 +1,25 @@
+<div class="input-group top-distance">
+  <input type="text" placeholder="Enter a task" onfocus="this.value=''" class="form-control" [(ngModel)]="title">
+  <button mat-button style="color: rebeccapurple;" [disabled]="title=='' || title==null" (click)="addTask(title)"><i class="material-icons">add</i></button>
+</div>
+
+<div style="margin: 5px 0">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of tasks">
+      <span class="hover-cursor" [class.text-success]="task.isCompleted">
+        <i class="fa fa-lg" [ngClass]="task.isCompleted==false?'fa-check-circle-o':'fa-circle-thin'"></i>
+      </span>
+      <span>
+        <i class="material-icons is-pointer circle" (click)="completeTask(task._id, task)">check_circle_outline</i>
+      </span>
+      {{task.title}}
+      <span style="float: right;">
+         <i class="material-icons is-pointer edit" (click)="editDialog(task._id, task)">edit</i>
+         <i class="material-icons is-pointer delete" (click)="deleteDialog(task._id)">delete</i>
+      </span>
+    </li>
+  </ul>
+  <br>
+  <mat-checkbox (change)="toggle($event)"><i>Show completed tasks</i></mat-checkbox>
+</div>
+

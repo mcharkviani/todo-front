@@ -1,0 +1,18 @@
+<div class="jumbotron" style="padding: 45px 0">
+  <h4 class="text-center">Completed Tasks</h4>
+</div>
+<div style="margin: 5px 0">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of completedTasks">
+      <i class="material-icons" style="float: left; color: green">check_circle_outline</i>
+      {{task.title}}
+      <span style="float: right;">
+      </span>
+    </li>
+  </ul>
+  <br>
+  <i class="material-icons" style="color: royalblue; cursor: pointer" [routerLink]="['/tasks']">
+    keyboard_backspace
+  </i>
+</div>
+

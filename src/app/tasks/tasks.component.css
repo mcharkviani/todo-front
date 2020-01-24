@@ -1,0 +1,20 @@
+.is-pointer {
+  cursor: pointer;
+}
+.circle {
+  float: left;
+  opacity: 0.3 ;
+}
+.circle:hover {
+  color: green;
+  opacity: 1;
+}
+.edit {
+  color: darkorange;
+}
+.delete {
+  color: crimson;
+}
+.top-distance {
+  margin-top: 20px;
+}
