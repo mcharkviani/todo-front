@@ -1,1 +1,48 @@
-<p>register works!</p>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" style="margin-top: 20px; border: 3px solid lightsteelblue; border-radius: 5px;">
+  <div style="padding: 15px;">
+    <h5 style="text-align: center; color: cornflowerblue">Sign Up</h5>
+
+  <div class="form-group">
+    <input [class.is-invalid]="firstname.invalid && firstname.touched" formControlName="firstname" type="text" class="form-control" placeholder="First name">
+    <div *ngIf="firstname.invalid && firstname.touched" class="text-danger">
+      <small class="text-danger" *ngIf="firstname.errors?.required">First name is required</small>
+      <small class="text-danger" *ngIf="firstname.errors?.minlength">First name must be at least {{firstname.errors?.minlength.requiredLength}} characters</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input [class.is-invalid]="lastname.invalid && lastname.touched" formControlName="lastname" type="text" class="form-control" placeholder="Last name">
+    <div *ngIf="lastname.invalid && lastname.touched" class="text-danger">
+      <small class="text-danger" *ngIf="lastname.errors?.required">Last name is required</small>
+      <small class="text-danger" *ngIf="lastname.errors?.minlength">Last name must be at least {{lastname.errors?.minlength.requiredLength}} characters</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input  [class.is-invalid]="username.invalid && username.touched" formControlName="username" type="text" class="form-control" placeholder="Username">
+    <div *ngIf="username.invalid && username.touched" class="text-danger">
+      <small class="text-danger" *ngIf="username.errors?.required">Username is required</small>
+      <small class="text-danger" *ngIf="username.errors?.minlength">Username must be at least {{username.errors?.minlength.requiredLength}} characters</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input [class.is-invalid]="email.invalid && email.touched" formControlName="email" type="email" class="form-control" placeholder="Email">
+    <div *ngIf="email.invalid && email.touched" class="text-danger">
+      <small class="text-danger" *ngIf="email.errors?.required">Email is required</small>
+      <small class="text-danger" *ngIf="email.errors?.minlength">Email must be at least {{email.errors?.minlength.requiredLength}} characters</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input [class.is-invalid]="password.invalid && password.touched" formControlName="password" type="password" class="form-control" placeholder="Password">
+    <div *ngIf="password.invalid && password.touched" class="text-danger">
+      <small class="text-danger" *ngIf="password.errors?.required">Password is required</small>
+      <small class="text-danger" *ngIf="password.errors?.minlength">Password must be at least {{password.errors?.minlength.requiredLength}} characters</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Sign Up</button>
+
+  </div>
+</form>

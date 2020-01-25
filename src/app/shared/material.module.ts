@@ -15,7 +15,8 @@ const materials = [
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatFormFieldModule
 ];
 
 @NgModule({

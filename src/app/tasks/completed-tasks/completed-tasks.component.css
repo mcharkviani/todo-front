@@ -1,0 +1,8 @@
+li:hover{
+  background-color: lightcyan ;
+}
+.completed-div{
+  padding: 45px 0;
+  background-color: cadetblue;
+  color: white
+}
