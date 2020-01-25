@@ -1,9 +1,13 @@
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" style="margin-top: 20px; border: 3px solid lightsteelblue; border-radius: 5px;">
+{{errorMessage | json}}
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" style="margin-top: 20px; border: 3px solid lightslategray; border-radius: 5px;">
+  <div style="background-color: lightslategray; height: 70px;">
+    <h5 style="text-align: center; color: white; padding-top: 20px;">Sign Up</h5>
+  </div>
   <div style="padding: 15px;">
-    <h5 style="text-align: center; color: cornflowerblue">Sign Up</h5>
 
   <div class="form-group">
-    <input [class.is-invalid]="firstname.invalid && firstname.touched" formControlName="firstname" type="text" class="form-control" placeholder="First name">
+    <input [class.is-invalid]="firstname.invalid && firstname.touched" name="firstname" formControlName="firstname" type="text" class="form-control" placeholder="First name">
     <div *ngIf="firstname.invalid && firstname.touched" class="text-danger">
       <small class="text-danger" *ngIf="firstname.errors?.required">First name is required</small>
       <small class="text-danger" *ngIf="firstname.errors?.minlength">First name must be at least {{firstname.errors?.minlength.requiredLength}} characters</small>
@@ -42,7 +46,7 @@
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary">Sign Up</button>
+  <button type="submit" [disabled]="err" class="btn btn-primary" (click)="registerUser()">Sign Up</button>
 
   </div>
 </form>

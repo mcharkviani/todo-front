@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {DialogBoxComponent} from './dialog-box/dialog-box.component';
 import {EditDialogComponent} from './edit-dialog/edit-dialog.component';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-tasks',
@@ -37,6 +38,9 @@ export class TasksComponent implements OnInit, OnDestroy {
         error => {
           this.errorMessage = error;
           console.log(`Error - ${error}`);
+          if (error instanceof HttpErrorResponse) {
+            this.router.navigate(['/auth/login']);
+          }
     });
   }
   addTask(title: string) {

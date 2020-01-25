@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
-
-  constructor(private fb: FormBuilder) { }
+export class RegisterComponent implements OnInit, OnDestroy {
+  sub: Subscription;
+  errorMessage;
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
   registrationForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.minLength(2)]],
@@ -35,7 +39,25 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
+  registerUser() {
+    this.sub = this.auth.registerUser(this.registrationForm.value)
+      .subscribe(result => {
+      console.log(result);
+      localStorage.setItem('token', result.token);
+      this.router.navigate(['auth/login']);
+    },
+    error => {
+          console.log(error);
+          this.errorMessage = error.error;
+    }
+  );
+  }
   onSubmit() {
     console.log(this.registrationForm.value);
+  }
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 }

@@ -18,6 +18,9 @@ export class AuthService {
   loginUser(user) {
     return this.http.post<any>(this.loginUrl, user);
   }
+  getUser() {
+    return this.http.get<any>(`${this.authUrl}/me`);
+  }
   loggedIn() {
     return !!localStorage.getItem('token');
   }
@@ -26,5 +29,8 @@ export class AuthService {
   }
   getToken() {
     return localStorage.getItem('token');
+  }
+  isAuthenticated() {
+    return this.getToken() !== null;
   }
 }
