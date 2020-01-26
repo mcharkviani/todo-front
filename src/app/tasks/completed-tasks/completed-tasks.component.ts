@@ -11,6 +11,7 @@ import {ITask} from '../interfaces/ITask';
 export class CompletedTasksComponent implements OnInit, OnDestroy {
   sub: Subscription;
   completedTasks: ITask[];
+  completedMessage;
   constructor(private taskService: TasksService) { }
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class CompletedTasksComponent implements OnInit, OnDestroy {
     this.sub = this.taskService.showCompletedTasks()
       .subscribe(result => {
         this.completedTasks = result;
+        this.completedMessage = this.completedTasks.length > 0 ? 'Completed Tasks' : 'There is no completed task';
         console.log(this.completedTasks);
     });
   }

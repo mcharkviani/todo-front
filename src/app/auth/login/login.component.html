@@ -3,6 +3,7 @@
     <h5 style="text-align: center; color: white; padding-top: 20px;">Log In</h5>
   </div>
   <div style="padding: 20px;">
+    <span *ngIf="errorMessage" style="color: red;">{{errorMessage}}</span>
     <div class="form-group">
       <div class="input-container">
         <i class="fa fa-user icon"></i>

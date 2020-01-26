@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+const  helper = new JwtHelperService();
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +33,10 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
-  isAuthenticated() {
-    return this.getToken() !== null;
+  sendToken(token: any) {
+    return localStorage.setItem('token', token);
+  }
+  decodeToken(token: string) {
+    return helper.decodeToken(token);
   }
 }

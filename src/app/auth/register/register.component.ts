@@ -43,12 +43,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.sub = this.auth.registerUser(this.registrationForm.value)
       .subscribe(result => {
       console.log(result);
-      localStorage.setItem('token', result.token);
+      // localStorage.setItem('token', result.token);
       this.router.navigate(['auth/login']);
     },
     error => {
-          console.log(error);
-          this.errorMessage = error.error;
+          console.log(error.error.error);
+          this.errorMessage = error.error.error.startsWith('E11000 duplicate key') ? 'Username or email is already taken.' :
+            'Please, fill in valid information';
     }
   );
   }

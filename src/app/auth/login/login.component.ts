@@ -31,12 +31,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.sub = this.auth.loginUser(this.loginForm.value)
       .subscribe(result => {
           console.log(result);
-          localStorage.setItem('token', result.token);
+          this.auth.sendToken(result.token);
           this.router.navigate(['/tasks']);
         },
         error => {
           console.log(error);
-          this.errorMessage = error.error;
+          if (error.status === 401) {
+            this.errorMessage = 'Username or password is invalid';
+          } else if (error.status === 400) {
+            this.errorMessage = 'Please, fill in valid information';
+          }
         }
       );
   }

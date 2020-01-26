@@ -19,14 +19,16 @@ export class NavComponent implements OnInit, OnDestroy {
   }
   getUser() {
     this.sub = this.auth.getUser()
+    // localStorage.getItem('token')
       .subscribe(result => {
-        console.log(result);
-        this.user = JSON.parse(JSON.stringify(result['data'].username));
-      },
+          console.log(result.token);
+          this.user = JSON.parse(JSON.stringify(result['data'].username));
+          console.log(this.user);
+        },
         error => {
           console.log(error);
         }
-    );
+      );
   }
   ngOnDestroy() {
    if (this.sub) {

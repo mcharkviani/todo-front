@@ -15,9 +15,9 @@
         <a class="nav-link" [routerLink]="['auth/login']"><span class="fas fa-sign-in-alt"></span> Login</a>
       </li>
 
-      <li class="nav-item" *ngIf="auth.loggedIn()">
-        <a class="nav-link">{{user}}</a>
-      </li>
+<!--      <li class="nav-item" *ngIf="auth.loggedIn()">-->
+<!--        <a class="nav-link">{{user}}</a>-->
+<!--      </li>-->
 
       <li class="nav-item" *ngIf="auth.loggedIn()">
         <a class="nav-link" [routerLink]="['auth/login']" (click)="auth.logOut()"><span class="fas fa-sign-in-alt"></span> Logout</a>
