@@ -51,7 +51,8 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.subAdd = this.service.addTask(newTask)
       .subscribe(result => {
         console.log(`${result} added successfully`);
-          this.getTasks();
+        this.title = '';
+        this.getTasks();
     },
         error => {
           this.errorMessage = error;
